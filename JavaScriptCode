@@ -1,39 +1,47 @@
 // Part A: Reverse every word in a sentence
 function reverseWordsInSentence(sentence) {
     let words = sentence.split(' ');
-    let reversedWords = words.map(word => {
-        let reversedWord = '';
-        for (let i = word.length - 1; i >= 0; i--) {
-            reversedWord += word[i];
-        }
-        return reversedWord;
-    });
+    let reversedWords = words.map(word => reverseString(word));
     return reversedWords.join(' ');
+}
+
+// Helper function to reverse a string
+function reverseString(str) {
+    let reversedStr = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversedStr += str[i];
+    }
+    return reversedStr;
 }
 
 // Part B: Sort an array in descending order
 function sortArrayDescending(arr) {
-    for (let i = 0; i < arr.length - 1; i++) {
-        for (let j = 0; j < arr.length - 1 - i; j++) {
-            if (arr[j] < arr[j + 1]) {
+    // Create a copy of the array to avoid modifying the original array
+    let sortedArray = arr.slice();
+
+    // Implementing bubble sort algorithm
+    for (let i = 0; i < sortedArray.length - 1; i++) {
+        for (let j = 0; j < sortedArray.length - 1 - i; j++) {
+            if (sortedArray[j] < sortedArray[j + 1]) {
                 // Swap elements
-                let temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                let temp = sortedArray[j];
+                sortedArray[j] = sortedArray[j + 1];
+                sortedArray[j + 1] = temp;
             }
         }
     }
-    return arr;
+
+    return sortedArray;
 }
 
-// usage for Part A
-let sentence = "We love working on JavaScript";
+// Example usage for Part A
+let sentence = "We love to work on JAVASCRIPT";
 let reversedSentence = reverseWordsInSentence(sentence);
-console.log("Original Sentence:", sentence);
-console.log("Reversed Words Sentence:", reversedSentence);
+console.log("Original Sentence: " + sentence);
+console.log("Reversed Words Sentence: " + reversedSentence);
 
-// usage for Part B
-let array = [5, 7, 8, 9, 2, 4];
+// Example usage for Part B
+let array = [2, 5, 8, 1, 7, 9];
+console.log("Original Array: " + array);
 let sortedArray = sortArrayDescending(array);
-console.log("Original Array:", array);
-console.log("Sorted Array in Descending Order:", sortedArray);
+console.log("Sorted Array in Descending Order: " + sortedArray);
